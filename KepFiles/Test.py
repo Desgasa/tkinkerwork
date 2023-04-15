@@ -39,8 +39,8 @@ class test():
 
 
 
-        template_file_path = 'C:\Test\DepositTemplate3x20.docx'
-        output_file_path = 'C:\Test\\' + 'test' + '.docx'
+        template_file_path = ''
+        output_file_path = ''
         variables = {
         "{":"",
         "}":"",
