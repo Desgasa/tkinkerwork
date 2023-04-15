@@ -11,11 +11,5 @@ def connect():
         database = "testpython"
 )
 
-def database():
-        global result
-        mycursor = dbconn.cursor()
-        mycursor.execute(""" SELECT `value_text` FROM `ClientCode` WHERE `Treatyid` = "1" """)
-        result = mycursor.fetchone()
-
 
 connect()
