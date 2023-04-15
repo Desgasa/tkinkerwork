@@ -29,7 +29,7 @@ class Login():
 
     
 
-        if(username.get()=="opereod" and password.get()=="123456a"):
+        if(username.get().capitalize()=="Opereod" and password.get()=="123456a"):
             messagebox.showinfo("Successfully","Login is correct")
             self.root.destroy()
             myWindow2 = Window()
