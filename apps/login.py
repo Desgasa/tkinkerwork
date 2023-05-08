@@ -17,13 +17,23 @@ class Login():
 
         
 
-        Label(self.root, text="UserName").place(x=40,y=40)
-        Label(self.root,text='Password').place(x=40,y=100)
+        Label(self.root, text="Username").place(x=87,y=40)
+        Label(self.root,text='Password').place(x=87,y=100)
         username = Entry(self.root)
-        username.place(x=40, y=65)
+        username.place(x=87, y=65)
         password = Entry(self.root,show=('*'))
-        password.place(x=40, y=125)
-        Button(self.root,command=self.login,text="Login",height=1,width=7).place(x=170,y=160)
+        password.place(x=87, y=125)
+        login = ttk.Button(self.root,command=self.login,text="Login")
+        login.pack(
+            
+            expand= True,
+            ipadx = 2, 
+            ipady = 7,
+            anchor = "s",
+            pady = 30
+            )
+            
+
     def login(self):
         
 

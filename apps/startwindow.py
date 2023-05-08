@@ -6,11 +6,12 @@ from KepFiles.DepTempEarDes import *
 from KepFiles.DepTem3x20 import * 
 from KepFiles.DepTem3x45 import *
 from KepFiles.Test import *
+from KepFiles.Test2 import *
 
 class Window():
     def __init__(self):
         self.startwindow = Tk()
-        self.startwindow.geometry("200x250")
+        self.startwindow.geometry("250x250")
         self.startwindow.title("KepHelper")
         self.startwindow.protocol("WM_DELETE_WINDOW", self.on_closing)
         
@@ -32,6 +33,7 @@ class Window():
         first_item.add_command(label = "DepositTemplate3x20", command= self.deptem3x20)
         first_item.add_command(label = "DepositTemplate3x45",command= self.deptem3x45)
         first_item.add_command(label = "Test",command= self.test)
+        first_item.add_command(label = "Test2",command= self.test)
         first_item.add_separator()
         first_item.add_command(label = "exit", command= self.on_closing)
         
@@ -56,6 +58,9 @@ class Window():
         Test = test()
         Test.start()
 
+    def test(self):
+        Test2 = test2()
+        Test2.start()
 
 
     def on_closing(self):

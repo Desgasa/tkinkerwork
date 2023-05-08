@@ -19,34 +19,67 @@ def replace_text_in_paragraph(paragraph, key, value):
 class test():
     def __init__(self):
         global Treatyid
-
+        global Filename
         self.test = Tk()
-        self.test.geometry("250x250")
+        self.test.geometry("300x250")
         self.test.title("KepHelper")
         self.test.protocol("WM_DELETE_WINDOW", self.on_closing)
-        Label(self.test,text='Treatyid').place(x=250,y=15)
-        Treatyid = Entry(self.test,width=50)
-        Treatyid.place(x=50, y=50)
-        Button(self.test,text="Replace Text",command=self.search,height=3,width=10).place(x= 100,y=100)
+        Label(self.test, text = 'FileName').place(x=87,y=40)
+        Filename = Entry(self.test, width = 30)
+        Filename.place(x=87, y=65)
+        Label(self.test,text='Treatyid').place(x=87,y=100)
+        Treatyid = Entry(self.test,width=30)
+        Treatyid.place(x=87, y=125)
+        replacebutton = ttk.Button(self.test,text="Replace Text",command=self.search)
+        replacebutton.pack(
+            
+            expand= True,
+            ipadx = 2, 
+            ipady = 7,
+            anchor = "s",
+            pady = 30
+            )
+        
 
         
 
     def search(self):
         mycursor = dbconn.cursor()
-        mycursor.execute("SELECT ClientCode.value_text, CurrentDate.value_date FROM `ClientCode`, `CurrentDate` WHERE ClientCode.Treatyid  = %s AND CurrentDate.Treatyid = %s ; ",(Treatyid.get(),Treatyid.get(),))
-        result = mycursor.fetchone()
+        args = [Treatyid.get(), 0]
+        result = mycursor.callproc('p2', args)
+        datas = [Treatyid.get(),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        tester = mycursor.callproc('test', datas)
 
 
 
 
-        template_file_path = ''
-        output_file_path = ''
+        template_file_path = 'C:\Test\\' + result[1] + '.docx'
+        output_file_path = 'C:\Test\\' +  Filename.get()  + '.docx'
         variables = {
         "{":"",
         "}":"",
-        "ClientCode": result[0],
-        "CurrentDate": result[1]
-        }
+        "CurrentDate": tester[22],
+        "ClientCode": tester[1],
+        "TreatyCode": tester[21],
+        "ClientName": tester[2],
+        "StateCode": tester[4],
+        "ClientAddress":tester[5],
+        "AccTreatyPlacing":tester[6],
+        "AccPlacingCurTag":tester[7],
+        "DepositIBAN":tester[8],
+        "DepositAccCurrency":tester[9],
+        "DepositAmountInWords":tester[11],
+        "DepositAmount":tester[10],
+        "RateInWords":tester[13],
+        "Rate": tester[12],
+        "DateFrom":tester[14],
+        "DateInto":tester[15],
+        "DayCount":tester[16],
+        "AutolongTreaty":tester[17],
+        "PercentReturnType":tester[18],
+        "AccTreatyPaymentPercent":tester[19],
+        "AccPayBodyCurTag":tester[20]
+                                            }
 
 
 
@@ -68,11 +101,11 @@ class test():
 
     def on_closing(self):
         if messagebox.askokcancel("Вийти?","Ви бажаєте закрити додаток?"):
-            self.test.destroy()
+            self.test2.destroy()
             
     
     def start(self):
-           self.test.mainloop()
+           self.test2.mainloop()
            
 
          
