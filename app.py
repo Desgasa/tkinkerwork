@@ -1,7 +1,6 @@
-from apps.login import *
+from startwindow.startwindow import *
 
 
 
-myWindow = Login()
+myWindow = Window()
 myWindow.start()  
- 
